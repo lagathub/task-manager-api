@@ -16,7 +16,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'in_progress', 'done'])->default('pending');
             $table->timestamps();
 
-            // Enforce unique title + due_date combination
+            
             $table->unique(['title', 'due_date']);
         });
     }

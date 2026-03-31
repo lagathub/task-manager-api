@@ -19,7 +19,7 @@ class StoreTaskRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                // Unique combination of title + due_date
+                
                 Rule::unique('tasks')->where(function ($query) {
                     return $query->where('due_date', $this->due_date);
                 }),
@@ -28,7 +28,7 @@ class StoreTaskRequest extends FormRequest
                 'required',
                 'date',
                 'date_format:Y-m-d',
-                'after_or_equal:today', // due_date must be today or in the future
+                'after_or_equal:today', 
             ],
             'priority' => [
                 'required',

@@ -11,17 +11,11 @@ use Illuminate\Http\Request;
 
 class TaskController
 {
-    /**
-     * Inject TaskService via constructor (Dependency Injection)
-     */
     public function __construct(private readonly TaskService $taskService)
     {
     }
 
-    /**
-     * POST /api/tasks
-     * Create a new task.
-     */
+
     public function store(StoreTaskRequest $request): JsonResponse
     {
         $task = $this->taskService->createTask($request->validated());
@@ -32,11 +26,6 @@ class TaskController
         ], 201);
     }
 
-    /**
-     * GET /api/tasks
-     * List all tasks sorted by priority then due_date.
-     * Optional: ?status=pending|in_progress|done
-     */
     public function index(Request $request): JsonResponse
     {
         $status = $request->query('status');
@@ -55,10 +44,7 @@ class TaskController
         ]);
     }
 
-    /**
-     * PATCH /api/tasks/{id}/status
-     * Advance a task's status (pending → in_progress → done only).
-     */
+   
     public function updateStatus(UpdateTaskStatusRequest $request, Task $task): JsonResponse
     {
         $updated = $this->taskService->advanceStatus($task, $request->validated('status'));
@@ -69,10 +55,7 @@ class TaskController
         ]);
     }
 
-    /**
-     * DELETE /api/tasks/{id}
-     * Delete a task — only allowed if status is 'done'.
-     */
+   
     public function destroy(Task $task): JsonResponse
     {
         $this->taskService->deleteTask($task);
@@ -82,10 +65,7 @@ class TaskController
         ]);
     }
 
-    /**
-     * GET /api/tasks/report?date=YYYY-MM-DD
-     * Daily report: counts per priority and status for a given date.
-     */
+   
     public function report(Request $request): JsonResponse
     {
         $request->validate([
