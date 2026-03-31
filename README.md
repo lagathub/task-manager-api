@@ -8,10 +8,11 @@ Built for the **Cytonn Technologies Software Engineering Internship** coding cha
 
 ## Tech Stack
 
-- PHP 8.3
-- Laravel 11
-- MySQL 8
-- OOP Service Layer pattern (TaskService)
+- **Backend:** PHP 8.3 (Laravel 11)
+- **Database:** MySQL 8
+- **Frontend:** Vue.js / Vanilla JS (Polished interface)
+- **Pattern:** OOP Service Layer (TaskService)
+- **Local Dev:** Laravel Herd
 
 ---
 
@@ -35,7 +36,7 @@ database/
 │   └── 2026_03_28_000001_create_tasks_table.php
 ├── seeders/
 │   ├── DatabaseSeeder.php
-│   └── TaskSeeder.php
+│   └── TaskSeeder.php               
 └── task_manager_dump.sql            # SQL dump for direct import
 
 routes/
@@ -44,18 +45,18 @@ routes/
 
 ---
 
-## Running Locally
+## Running Locally (Using Laravel Herd)
 
 ### Prerequisites
-- PHP >= 8.2
-- Composer
-- MySQL 8+
+- [Laravel Herd](https://herd.laravel.com/) 
+- MySQL 8+ (via [DBngin](https://dbngin.com/) or Herd Pro)
 
 ### Steps
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/lagathub/task-manager-api.git
+# 1. Clone the repo into your Herd directory
+cd ~/Herd
+git clone [https://github.com/lagathub/task-manager-api.git](https://github.com/lagathub/task-manager-api.git)
 cd task-manager-api
 
 # 2. Install dependencies
@@ -67,18 +68,13 @@ php artisan key:generate
 
 # 4. Configure your database in .env
 DB_DATABASE=task_manager
-DB_USERNAME=your_mysql_username
-DB_PASSWORD=your_mysql_password
+DB_USERNAME=root
+DB_PASSWORD=             # Usually blank for DBngin/Herd
 
-# 5. Run migrations
-php artisan migrate
+# 5. Run migrations & seed data
+php artisan migrate --seed
 
-# 6. (Optional) Seed sample data
-php artisan db:seed
-
-# 7. Start the development server
-php artisan serve
-# API is now available at http://localhost:8000/api
+API/Web Interface: https://task-manager-api.test
 ```
 
 ### Alternative: Import SQL dump directly
@@ -108,18 +104,16 @@ mysql -u root -p task_manager < database/task_manager_dump.sql
    ```
 5. Add a `Procfile` in root:
    ```
-   web: php artisan serve --host=0.0.0.0 --port=$PORT
-   ```
-6. Run migrations via Railway shell:
-   ```bash
-   php artisan migrate --force
+   web: php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
    ```
 
 ---
 
 ## API Endpoints
 
-Base URL: `http://localhost:8000/api`
+Local Base URL: `https://task-manager-api.test/`
+
+Live Base URL: `https://web-production-c5da59.up.railway.app/`
 
 ---
 
@@ -327,5 +321,5 @@ Laravel's route model binding from treating `"report"` as a task ID.
 
 ## Author
 
-Herbert — BSc Computer Science, Kenyatta University  
+Herbert Kipkoech  
 GitHub: [lagathub](https://github.com/lagathub)
