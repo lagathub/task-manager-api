@@ -111,9 +111,9 @@ mysql -u root -p task_manager < database/task_manager_dump.sql
 
 ## API Endpoints
 
-Local Base URL: `https://task-manager-api.test/`
+Local Base URL: https://task-manager-api.test/
 
-Live Base URL: `https://web-production-c5da59.up.railway.app/`
+Live Base URL: https://web-production-c5da59.up.railway.app/
 
 ---
 
